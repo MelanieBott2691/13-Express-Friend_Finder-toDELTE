@@ -5,7 +5,7 @@
 // Basic npm packages
 var express = require("express");
 var path = require("path");
-console.log("Did it work? Test")
+// console.log("Did it work? Test")
 
 /* 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 
