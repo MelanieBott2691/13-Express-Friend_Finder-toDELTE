@@ -4,9 +4,24 @@
 
 // Basic npm packages
 var express = require("express");
-var path = require("path");
+
 // console.log("Did it work? Test")
 
+
+var app = express();
+// set initial PORT
+var PORT = process.env.PORT || 8080;
+
+//set express
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+require("./routes/apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
+
+app.listen(PORT, function() {
+    console.log("App listening on PORT: " + PORT);
+});
 /* 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 
 The modal should display both the name and picture of the closest match.
