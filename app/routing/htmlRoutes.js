@@ -9,15 +9,14 @@ var path = require("path");
 // Routing
 modules.exports = function(app) {
     // GET Route Requested HTML content
+    
+// get home page
     app.get("/", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/home.html"));
     });
 
-    app.get("/", function(req, res) {
+// get survey page
+    app.get("/survey", function(req, res) {
         res.sendFile(path.join(__dirname, "../public/survey.html"));
     });
-
-    app.get("/", function(req, res) {
-        res.sendFile(path.join(__dirname, "../public/home.html"));
-    });
-}
+};

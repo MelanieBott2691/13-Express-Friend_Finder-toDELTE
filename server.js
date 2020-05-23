@@ -4,43 +4,59 @@
 
 // Basic npm packages
 var express = require("express");
-require("path");
+var bodyParser = require("body-parser");
+var path = require("path");
 
 // console.log("Did it work? Test")
 
 var app = express();
+
+var http = require('http'),
+    host = '127.0.01',
+    port = '8889';
+
 // set initial PORT
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8889;
 
-//set express
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// //MYSQL CONNECTION
+// var connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 8080,
+//     user: "root",
+//     password: "root",
+//     // database: "moviePlanner_db"
+//   });
 
-require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+app.listen(port, () => console.log("Listening on port %s", port));
+// //set express
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
 
-//MYSQL CONNECTION
-var connection = mysql.createConnection({
-    host: "localhost",
-    port: 8889,
-    user: "root",
-    password: "root",
-    database: "moviePlanner_db"
-  });
+// require("./routes/apiRoutes")(app);
+// require("./routes/htmlRoutes")(app);
+
+// //MYSQL CONNECTION
+// var connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 8080,
+//     user: "root",
+//     password: "root",
+//     // database: "moviePlanner_db"
+//   });
   
-  connection.connect(function(err) {
-    if (err) {
-      console.error("error connecting: " + err.stack);
-      return;
-    }
+//   connection.connect(function(err) {
+//     if (err) {
+//       console.error("error connecting: " + err.stack);
+//       return;
+//     }
   
-    console.log("connected as id " + connection.threadId);
-  });
-​
-// Start the server so that it can begin listening to requests
-app.listen(PORT, function() {
-    console.log("App listening on: http://localhost:" + PORT);
-});
+//     console.log("connected as id " + connection.threadId);
+//   });
+// ​
+// // Start the server so that it can begin listening to requests
+// app.listen(PORT, function() {
+//     console.log("App listening on: http://localhost:" + PORT);
+// });
 /* 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 
 The modal should display both the name and picture of the closest match.
