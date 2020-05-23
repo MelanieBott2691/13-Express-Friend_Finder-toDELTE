@@ -4,9 +4,9 @@
 
 // Basic npm packages
 var express = require("express");
+require("path");
 
 // console.log("Did it work? Test")
-
 
 var app = express();
 // set initial PORT
@@ -19,8 +19,27 @@ app.use(express.json());
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+//MYSQL CONNECTION
+var connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "moviePlanner_db"
+  });
+  
+  connection.connect(function(err) {
+    if (err) {
+      console.error("error connecting: " + err.stack);
+      return;
+    }
+  
+    console.log("connected as id " + connection.threadId);
+  });
+​
+// Start the server so that it can begin listening to requests
 app.listen(PORT, function() {
-    console.log("App listening on PORT: " + PORT);
+    console.log("App listening on: http://localhost:" + PORT);
 });
 /* 7. Once you've found the current user's most compatible friend, display the result as a modal pop-up.
 

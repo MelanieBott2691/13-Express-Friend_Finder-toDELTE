@@ -11,14 +11,17 @@ var waitListData = require("../data/waitinglistData");
 // ==========================================================
 
 module.exports = function(app) {
-    app.get("/api/tables", function(req, res) {
-        res.json(tableData);
+    app.get("/api/friends", function(req, res) {
+        res.json(friends);
     });
+    app.post("/api/friends", function(req, res) {
 
-    app.get("/api/waitlist", function(req, res) {
-        res.json(waitListData);
+    // --------------------- Create New Friend with survey input -------------------------
+        var newFriend = req.body;
+
+        newFriend.routeName = newFriend.name.replace(/s+/g, "").toLowerCase();
     });
-    app.post("/api/tables", function(req, res) {
+    app.post("/api/friends", function(req, res) {
         if (tableData.length < 5) {
             tableData.push(req.body);
             res.json(true);
